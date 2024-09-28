@@ -15,7 +15,7 @@ public abstract class Panel extends JPanel implements Runnable {
 
     public int turn = 1;
 
-    final int fps = 60;
+    final int fps = 30;
 
     public Thread thread;
 

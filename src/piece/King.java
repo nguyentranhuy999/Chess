@@ -5,13 +5,13 @@ import main.Panel;
 import pair.Pair;
 
 public class King extends ChessMan{
-    public King(GamePanel panel, int x, int y) {
-        super(panel, x, y);
+    public King(GamePanel panel, int x, int y, boolean white) {
+        super(panel, x, y, white);
     }
 
     @Override
     public void setImageName() {
-        this.name = "White_Knight";
+        this.name = "King";
     }
 
     @Override
@@ -21,29 +21,70 @@ public class King extends ChessMan{
 
     @Override
     public void functionUpdate() {
-        if (this.x + this.panel.tileSize < 12 * panel.tileSize) {
-            moves.add(new Pair<>(this.x + this.panel.tileSize, this.y));
+        if (this.j + 1 < 8) {
+            if (panel.Board[i][j + 1] == 0) {
+                moves.add(new Pair<>(this.i, this.j + 1));
+            }
+            else if (panel.Board[i][j + 1] * value < 0) {
+                eats.add(new Pair<>(this.i, this.j + 1));
+            }
         }
-        if(this.y + this.panel.tileSize < 10 * panel.tileSize) {
-            moves.add(new Pair<>(this.x, this.y + this.panel.tileSize));
+        if(this.i + 1 < 8) {
+            if (panel.Board[i + 1][j] == 0) {
+                moves.add(new Pair<>(this.i + 1, this.j));
+            }
+            else if (panel.Board[i + 1][j] * value < 0) {
+                eats.add(new Pair<>(this.i + 1, this.j));
+            }
         }
-        if(this.x + this.panel.tileSize < 12 * panel.tileSize && this.y + this.panel.tileSize < 10 * panel.tileSize) {
-            moves.add(new Pair<>(this.x + this.panel.tileSize, this.y + this.panel.tileSize));
+        if(this.j + 1 < 8 && this.i + 1 < 8) {
+            if (panel.Board[i + 1][j + 1] == 0) {
+                moves.add(new Pair<>(this.i + 1, this.j + 1));
+            }
+            else if (panel.Board[i + 1][j + 1] * value < 0) {
+                eats.add(new Pair<>(this.i + 1, this.j + 1));
+            }
+
         }
-        if(this.x - this.panel.tileSize > 3 * panel.tileSize){
-            moves.add(new Pair<>(this.x - this.panel.tileSize, this.y));
+        if(this.j - 1 > -1){
+            if (panel.Board[i][j - 1] == 0) {
+                moves.add(new Pair<>(this.i, this.j - 1));
+            }
+            else if (panel.Board[i][j - 1] * value < 0) {
+                eats.add(new Pair<>(this.i, this.j - 1));
+            }
         }
-        if(this.y - this.panel.tileSize > 1 * panel.tileSize){
-            moves.add(new Pair<>(this.x, this.y - this.panel.tileSize));
+        if(this.i - 1 > -1){
+            if (panel.Board[i - 1][j] == 0) {
+                moves.add(new Pair<>(this.i - 1, this.j));
+            }
+            else if (panel.Board[i - 1][j] * value < 0) {
+                eats.add(new Pair<>(this.i - 1, this.j));
+            }
         }
-        if(this.x - this.panel.tileSize > 3 * panel.tileSize && this.y - this.panel.tileSize > 1 * panel.tileSize){
-            moves.add(new Pair<>(this.x - this.panel.tileSize, this.y - this.panel.tileSize));
+        if(this.j - 1 > -1 && this.i - 1 > -1){
+            if (panel.Board[i - 1][j - 1] == 0) {
+                moves.add(new Pair<>(this.i - 1, this.j - 1));
+            }
+            else if (panel.Board[i - 1][j - 1] * value < 0) {
+                eats.add(new Pair<>(this.i - 1, this.j - 1));
+            }
         }
-        if(this.x + this.panel.tileSize < 12 * panel.tileSize  && this.y - this.panel.tileSize > 1 * panel.tileSize){
-            moves.add(new Pair<>(this.x + this.panel.tileSize, this.y - this.panel.tileSize));
+        if(this.j + 1 < 8 && this.i - 1 > -1){
+            if (panel.Board[i - 1][j + 1] == 0) {
+                moves.add(new Pair<>(this.i - 1, this.j + 1));
+            }
+            else if (panel.Board[i - 1][j + 1] * value < 0) {
+                eats.add(new Pair<>(this.i - 1, this.j + 1));
+            }
         }
-        if(this.x - this.panel.tileSize > 3 * panel.tileSize && this.y + this.panel.tileSize < 10 * panel.tileSize){
-            moves.add(new Pair<>(this.x - this.panel.tileSize, this.y + this.panel.tileSize));
+        if(this.j - 1 > -1 && this.i + 1 < 8){
+            if (panel.Board[i + 1][j - 1] == 0) {
+                moves.add(new Pair<>(this.i + 1, this.j - 1));
+            }
+            else if (panel.Board[i + 1][j - 1] * value < 0) {
+                eats.add(new Pair<>(this.i + 1, this.j - 1));
+            }
         }
     }
 }
