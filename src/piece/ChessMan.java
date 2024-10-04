@@ -351,7 +351,7 @@ public abstract class ChessMan{
                 }
             }
         }
-        if (this.value * panel.turn > 0){
+        if (this.value * panel.turn > 0 && !panel.moving){
             this.check1 = false;
         }
         else {
