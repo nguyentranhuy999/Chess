@@ -17,7 +17,7 @@ public class PromotionButton extends Button {
     @Override
     public void setImageName() {
         this.name1 = "Promotion1";
-        this.name2 = "Queue";
+        this.name2 = "Promotion2";
     }
 
     public void getImage1(){
