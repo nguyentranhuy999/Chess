@@ -150,7 +150,7 @@ public class GamePanel extends Panel {
                 mouseHandles[i][j].click = false;
             }
         }
-        System.out.println(promotion);
+        System.out.println(end);
     }
 
     @Override
