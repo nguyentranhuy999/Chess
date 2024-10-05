@@ -1,7 +1,12 @@
 package piece;
 
+import button.NextEat;
+import button.NextMove;
+import button.PromotionButton;
 import main.GamePanel;
 import pair.Pair;
+
+import java.awt.*;
 
 public class Pawn extends ChessMan{
     public Pawn(GamePanel panel, int x, int y, boolean white) {
@@ -132,14 +137,14 @@ public class Pawn extends ChessMan{
                 }
             }
         }
-        if (panel.promotion){
-            if (panel.turn == 1){
+        if (panel.promotion && !panel.moving){
+            if (panel.turn == 1 && this.i == 0){
                 for (int a = 0; a < 4; a++){
-                    promotionButtons[a].update();
-                    if (promotionButtons[a].button && this.i == 0){
+                    panel.promotionButtons[a].update();
+                    if (panel.promotionButtons[a].button){
                         this.alive = false;
                         panel.promotion = false;
-                        promotionButtons[a].button = false;
+                        panel.promotionButtons[a].button = false;
                         if (a == 0) {
                             panel.Board[this.i][this.j] = 9;
                             panel.chessMans.add(new Queen(panel, this.x, this.y, true));
@@ -160,13 +165,13 @@ public class Pawn extends ChessMan{
                     }
                 }
             }
-            else if (panel.turn == -1){
+            else if (panel.turn == -1 && this.i == 7){
                 for (int a = 4; a < 8; a++){
-                    promotionButtons[a].update();
-                    if (promotionButtons[a].button && this.i == 7){
+                    panel.promotionButtons[a].update();
+                    if (panel.promotionButtons[a].button){
                         this.alive = false;
                         panel.promotion = false;
-                        promotionButtons[a].button = false;
+                        panel.promotionButtons[a].button = false;
                         if (a == 4) {
                             panel.Board[this.i][this.j] = -9;
                             panel.chessMans.add(new Queen(panel, this.x, this.y, false));

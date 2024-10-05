@@ -1,6 +1,7 @@
 package main;
 
 import button.MenuButton;
+import button.PromotionButton;
 import piece.*;
 
 import javax.imageio.ImageIO;
@@ -43,6 +44,8 @@ public class GamePanel extends Panel {
     Queen blackQueen;
     Sound sound = new Sound();
     public ArrayList<ChessMan> chessMans;
+
+    public PromotionButton[] promotionButtons = new PromotionButton[8];
 
     public int turn;
 
@@ -107,6 +110,15 @@ public class GamePanel extends Panel {
         chessMans.add(blackKnight1);
         this.blackKnight2 = new Knight(this, 10 * tileSize,  2 * tileSize, false);
         chessMans.add(blackKnight2);
+
+        promotionButtons[0] = new PromotionButton(this, 6 * tileSize, 1 * tileSize, tileSize, tileSize);
+        promotionButtons[1] = new PromotionButton(this, 7 * tileSize, 1 * tileSize, tileSize, tileSize);
+        promotionButtons[2] = new PromotionButton(this, 8 * tileSize, 1 * tileSize, tileSize, tileSize);
+        promotionButtons[3] = new PromotionButton(this, 9 * tileSize, 1 * tileSize, tileSize, tileSize);
+        promotionButtons[4] = new PromotionButton(this, 6 * tileSize, 10 * tileSize, tileSize, tileSize);
+        promotionButtons[5] = new PromotionButton(this, 7 * tileSize, 10 * tileSize, tileSize, tileSize);
+        promotionButtons[6] = new PromotionButton(this, 8 * tileSize, 10 * tileSize, tileSize, tileSize);
+        promotionButtons[7] = new PromotionButton(this, 9 * tileSize, 10 * tileSize, tileSize, tileSize);
         getImage();
     }
 
@@ -159,14 +171,26 @@ public class GamePanel extends Panel {
         Graphics2D g2D =(Graphics2D) g;
         menuButton.draw(g2D);
         g2D.drawImage(board, 4 * tileSize, 2 * tileSize, (int) (8 * boardScale * tileSize), (int) (8 * boardScale *tileSize), null);
-        for (int i = 2; i < 10; i ++){
-            for (int j = 1; j <= 2; j++){
-                g2D.drawImage(queue, j * tileSize, i * tileSize, tileSize, tileSize, null);
-                g2D.drawImage(queue, (j + 12) * tileSize, i * tileSize, tileSize, tileSize, null);
-            }
-        }
+//        for (int i = 2; i < 10; i ++){
+//            for (int j = 1; j <= 2; j++){
+//                g2D.drawImage(queue, j * tileSize, i * tileSize, tileSize, tileSize, null);
+//                g2D.drawImage(queue, (j + 12) * tileSize, i * tileSize, tileSize, tileSize, null);
+//            }
+//        }
         for (ChessMan chessMan : chessMans){
             chessMan.draw(g2D);
+        }
+        if (this.promotion){
+            if (this.turn == 1){
+                for (int a = 0; a < 4; a++){
+                    promotionButtons[a].draw(g2D);
+                }
+            }
+            else if (this.turn == -1){
+                for (int a = 4; a < 8; a++){
+                    promotionButtons[a].draw(g2D);
+                }
+            }
         }
         g2D.dispose();
     }

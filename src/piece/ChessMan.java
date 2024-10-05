@@ -39,7 +39,6 @@ public abstract class ChessMan{
     ArrayList<Pair> eats = new ArrayList<>();
     ArrayList<NextMove> nextMoves = new ArrayList<>();
     ArrayList<NextEat> nextEats = new ArrayList<>();
-    PromotionButton [] promotionButtons = new PromotionButton[8];
 
     public ChessMan(GamePanel panel, int x, int y, boolean white){
         this.panel = panel;
@@ -78,14 +77,6 @@ public abstract class ChessMan{
         else{
             this.king = false;
         }
-        promotionButtons[0] = new PromotionButton(this.panel, 6 * panel.tileSize, 1 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[1] = new PromotionButton(this.panel, 7 * panel.tileSize, 1 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[2] = new PromotionButton(this.panel, 8 * panel.tileSize, 1 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[3] = new PromotionButton(this.panel, 9 * panel.tileSize, 1 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[4] = new PromotionButton(this.panel, 6 * panel.tileSize, 10 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[5] = new PromotionButton(this.panel, 7 * panel.tileSize, 10 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[6] = new PromotionButton(this.panel, 8 * panel.tileSize, 10 * panel.tileSize, panel.tileSize, panel.tileSize);
-        promotionButtons[7] = new PromotionButton(this.panel, 9 * panel.tileSize, 10 * panel.tileSize, panel.tileSize, panel.tileSize);
         getImage();
     }
 
@@ -377,18 +368,6 @@ public abstract class ChessMan{
                 }
                 for (NextEat eat : nextEats) {
                     eat.draw(g2D);
-                }
-            }
-            if (panel.promotion){
-                if (panel.turn == 1){
-                    for (int a = 0; a < 4; a++){
-                        promotionButtons[a].draw(g2D);
-                    }
-                }
-                else if (panel.turn == -1){
-                    for (int a = 4; a < 8; a++){
-                        promotionButtons[a].draw(g2D);
-                    }
                 }
             }
         }
