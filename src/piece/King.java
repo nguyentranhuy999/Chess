@@ -96,7 +96,7 @@ public class King extends ChessMan {
 
         this.check1 = false;
         if (this.moveTurn == 0) {
-            if (this.color == "White_") {
+            if ("White_".equals(this.color)) {
                 if (panel.Board[7][1] == 0 && panel.Board[7][2] == 0 && panel.Board[7][3] == 0) {
                     if (panel.whiteRook1.moveTurn == 0 && panel.whiteRook1.alive) {
                         for (ChessMan chessMan : panel.chessMans) {
@@ -135,7 +135,7 @@ public class King extends ChessMan {
                 }
             }
 
-            if (this.color == "Black_") {
+            if ("Black_".equals(this.color)) {
                 if (panel.Board[0][1] == 0 && panel.Board[0][2] == 0 && panel.Board[0][3] == 0) {
                     if (panel.blackRook1.moveTurn == 0 && panel.blackRook1.alive) {
                         for (ChessMan chessMan : panel.chessMans) {
@@ -165,11 +165,11 @@ public class King extends ChessMan {
                                     }
                                 }
                             }
-                            if (!this.check1 && !this.check) {
-                                Pair<Integer, Integer> pair = new Pair<>(this.i, this.j + 2);
-                                pair.special3 = true;
-                                moves.add(pair);
-                            }
+                        }
+                        if (!this.check1 && !this.check) {
+                            Pair<Integer, Integer> pair = new Pair<>(this.i, this.j + 2);
+                            pair.special3 = true;
+                            moves.add(pair);
                         }
                     }
                 }

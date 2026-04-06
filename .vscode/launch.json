@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Chess (main.Main)",
+      "request": "launch",
+      "mainClass": "main.Main",
+      "cwd": "${workspaceFolder}",
+      "classPaths": [
+        "${workspaceFolder}/out/build",
+        "${workspaceFolder}/src"
+      ],
+      "preLaunchTask": "Java: Build Chess (out/build)"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Java: Build Chess (out/build)",
+      "type": "shell",
+      "command": "mkdir -p out/build && javac -encoding UTF-8 -d out/build $(find src -name '*.java')",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$javac"
+      ]
+    },
+    {
+      "label": "Java: Run Chess",
+      "type": "shell",
+      "dependsOn": "Java: Build Chess (out/build)",
+      "command": "java -cp \"out/build:src\" main.Main",
+      "windows": {
+        "command": "java -cp \"out/build;src\" main.Main"
+      }
+    }
+  ]
+}

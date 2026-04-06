@@ -35,8 +35,8 @@ public abstract class ChessMan{
     public int ySpeed;
     public int xLock;
     public int yLock;
-    ArrayList<Pair> moves = new ArrayList<>();
-    ArrayList<Pair> eats = new ArrayList<>();
+    ArrayList<Pair<Integer, Integer>> moves = new ArrayList<>();
+    ArrayList<Pair<Integer, Integer>> eats = new ArrayList<>();
     ArrayList<NextMove> nextMoves = new ArrayList<>();
     ArrayList<NextEat> nextEats = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public abstract class ChessMan{
         }
         panel.Board[i][j] = this.value;
         setImageName();
-        if (this.name == "King"){
+        if ("King".equals(this.name)){
             this.king = true;
         }
         else{
@@ -94,6 +94,20 @@ public abstract class ChessMan{
     }
 
     public abstract void functionUpdate();
+
+    public void refreshMoveSet() {
+        moves = new ArrayList<>();
+        eats = new ArrayList<>();
+        functionUpdate();
+    }
+
+    public ArrayList<Pair<Integer, Integer>> getMoves() {
+        return moves;
+    }
+
+    public ArrayList<Pair<Integer, Integer>> getEats() {
+        return eats;
+    }
 
     public void slowMove(int a){
         if (this.x == this.xLock && this.y == this.yLock) {
@@ -149,7 +163,7 @@ public abstract class ChessMan{
         panel.Board[i][j] = 0;
         if (special){
             panel.Board[i1][j1] = 0;
-            panel.Board[i1 + panel.turn][j1] = this.value;
+            panel.Board[i1 - panel.turn][j1] = this.value;
         }
         else {
             panel.Board[i1][j1] = this.value;
@@ -168,7 +182,7 @@ public abstract class ChessMan{
                             panel.Board[i][j] = this.value;
                             panel.Board[i1][j1] = a;
                             if (special){
-                                panel.Board[i1 + panel.turn][j1] = 0;
+                                panel.Board[i1 - panel.turn][j1] = 0;
                             }
                             return false;
                         }
@@ -177,7 +191,7 @@ public abstract class ChessMan{
                             panel.Board[i][j] = this.value;
                             panel.Board[i1][j1] = a;
                             if (special){
-                                panel.Board[i1 + panel.turn][j1] = 0;
+                                panel.Board[i1 - panel.turn][j1] = 0;
                             }
                             return false;
                         }
@@ -188,7 +202,7 @@ public abstract class ChessMan{
         panel.Board[i][j] = this.value;
         panel.Board[i1][j1] = a;
         if (special){
-            panel.Board[i1 + panel.turn][j1] = 0;
+            panel.Board[i1 - panel.turn][j1] = 0;
         }
         return true;
     }

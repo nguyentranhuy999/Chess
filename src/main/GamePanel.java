@@ -1,5 +1,6 @@
 package main;
 
+import bot.Owl;
 import button.MenuButton;
 import button.PromotionButton;
 import piece.*;
@@ -44,6 +45,7 @@ public class GamePanel extends Panel {
     Queen blackQueen;
     Sound sound = new Sound();
     public ArrayList<ChessMan> chessMans;
+    private final Owl minimaxBot;
 
     public PromotionButton[] promotionButtons = new PromotionButton[8];
 
@@ -59,6 +61,7 @@ public class GamePanel extends Panel {
         this.moving = false;
         this.castling = false;
         this.promotion = false;
+        this.minimaxBot = new Owl(-1, 3);
 
         for (int i = 0; i < 8; i++ ) {
             for (int j = 0; j < 8; j++) {
@@ -157,6 +160,7 @@ public class GamePanel extends Panel {
                 }
             }
         }
+        minimaxBot.update(this);
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 mouseHandles[i][j].click = false;
@@ -195,4 +199,3 @@ public class GamePanel extends Panel {
         g2D.dispose();
     }
 }
-
